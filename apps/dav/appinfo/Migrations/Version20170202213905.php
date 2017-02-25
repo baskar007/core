@@ -83,6 +83,9 @@ class Version20170202213905 implements ISqlMigration {
 			}
 		}
 
+		//Mounted FS can have side effects on further migrations
+		\OC_Util::tearDownFS();
+
 		// drop entries with empty fileid
 		$dropQuery = $qb->resetQueryParts()
 			->delete('properties')
